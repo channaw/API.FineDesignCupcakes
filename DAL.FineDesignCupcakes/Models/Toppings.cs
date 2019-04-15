@@ -6,18 +6,14 @@ using System.ComponentModel.DataAnnotations;
 
 namespace DAL.FineDesignCupcakes.Models
 {
-
-    public class Flavors
+    public class Toppings
     {
 
         [Key]
-        public int FlavorId { get; set; }
-        public string FlavorName { get; set; }
+        public int ToppingId { get; set; }
+        public string ToppingName { get; set; }
         public string Image { get; set; }
-
         public string Thumbnail { get; set; }
 
     }
-
-   
 }

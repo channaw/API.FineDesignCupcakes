@@ -10,6 +10,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Microsoft.EntityFrameworkCore;
+using DAL.FineDesignCupcakes;
 
 namespace API.FineDesignCupcakes
 {
@@ -25,6 +27,9 @@ namespace API.FineDesignCupcakes
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var connection = @"Server=tcp:azchadevdw.database.windows.net,1433;Initial Catalog=FineDesignCupcakes;Persist Security Info=False;User ID=cwijesinghe;Password=azdwP@ss;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+            services.AddDbContext<FDCDatabaseContext>(opt =>
+                opt.UseSqlServer(connection));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 

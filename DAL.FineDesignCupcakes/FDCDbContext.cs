@@ -10,7 +10,9 @@ namespace DAL.FineDesignCupcakes
             { }
 
             public DbSet<Flavors> Flavors { get; set; }
+            public DbSet<Frostings> Frostings { get; set; }
+            public DbSet<Toppings> Toppings { get; set; }
 
-        }
+    }
     
 }

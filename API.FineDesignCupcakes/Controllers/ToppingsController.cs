@@ -12,56 +12,56 @@ namespace API.FineDesignCupcakes.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class FlavorsController : ControllerBase
+    public class ToppingsController : ControllerBase
     {
         private readonly FDCDatabaseContext _context;
 
-        public FlavorsController(FDCDatabaseContext context)
+        public ToppingsController(FDCDatabaseContext context)
         {
             _context = context;
         }
 
-        // GET: api/Flavors
+        // GET: api/Toppings
         [HttpGet]
-        public IEnumerable<Flavors> GetFlavors()
+        public IEnumerable<Toppings> GetToppings()
         {
-            return _context.Flavors;
+            return _context.Toppings;
         }
 
-        // GET: api/Flavors/5
+        // GET: api/Toppings/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetFlavors([FromRoute] int id)
+        public async Task<IActionResult> GetToppings([FromRoute] int id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var flavors = await _context.Flavors.FindAsync(id);
+            var toppings = await _context.Toppings.FindAsync(id);
 
-            if (flavors == null)
+            if (toppings == null)
             {
                 return NotFound();
             }
 
-            return Ok(flavors);
+            return Ok(toppings);
         }
 
-        // PUT: api/Flavors/5
+        // PUT: api/Toppings/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutFlavors([FromRoute] int id, [FromBody] Flavors flavors)
+        public async Task<IActionResult> PutToppings([FromRoute] int id, [FromBody] Toppings toppings)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != flavors.FlavorId)
+            if (id != toppings.ToppingId)
             {
                 return BadRequest();
             }
 
-            _context.Entry(flavors).State = EntityState.Modified;
+            _context.Entry(toppings).State = EntityState.Modified;
 
             try
             {
@@ -69,7 +69,7 @@ namespace API.FineDesignCupcakes.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!FlavorsExists(id))
+                if (!ToppingsExists(id))
                 {
                     return NotFound();
                 }
@@ -82,45 +82,45 @@ namespace API.FineDesignCupcakes.Controllers
             return NoContent();
         }
 
-        // POST: api/Flavors
+        // POST: api/Toppings
         [HttpPost]
-        public async Task<IActionResult> PostFlavors([FromBody] Flavors flavors)
+        public async Task<IActionResult> PostToppings([FromBody] Toppings toppings)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            _context.Flavors.Add(flavors);
+            _context.Toppings.Add(toppings);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetFlavors", new { id = flavors.FlavorId }, flavors);
+            return CreatedAtAction("GetToppings", new { id = toppings.ToppingId }, toppings);
         }
 
-        // DELETE: api/Flavors/5
+        // DELETE: api/Toppings/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteFlavors([FromRoute] int id)
+        public async Task<IActionResult> DeleteToppings([FromRoute] int id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var flavors = await _context.Flavors.FindAsync(id);
-            if (flavors == null)
+            var toppings = await _context.Toppings.FindAsync(id);
+            if (toppings == null)
             {
                 return NotFound();
             }
 
-            _context.Flavors.Remove(flavors);
+            _context.Toppings.Remove(toppings);
             await _context.SaveChangesAsync();
 
-            return Ok(flavors);
+            return Ok(toppings);
         }
 
-        private bool FlavorsExists(int id)
+        private bool ToppingsExists(int id)
         {
-            return _context.Flavors.Any(e => e.FlavorId == id);
+            return _context.Toppings.Any(e => e.ToppingId == id);
         }
     }
 }
